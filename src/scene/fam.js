@@ -71,7 +71,7 @@ window.APTFAM = (function () {
     if (lightTween) { busy = true; stepLight(now); }
     if (!state.started && controls.autoRotate) { busy = true; }
     if (now < controlsUntil || controls.autoRotate) { controls.update(); busy = true; }
-    if (busy || needRender) { H.renderer.render(H.scene, cam); needRender = false; updateOverlays(); }
+    if (busy || needRender) { H.renderer.render(H.scene, cam); needRender = false; try { updateOverlays(); } catch (e) { console.warn('overlay update skipped:', e); } }
     if (busy) requestAnimationFrame(loop); else { running = false; lastFrame = 0; }
   }
 
@@ -120,7 +120,7 @@ window.APTFAM = (function () {
   function nextView() { const sc = SCREENS[state.screen]; applyScreen(state.screen, (state.view + 1) % sc.cams.length); }
   function start() { if (state.started) return; state.started = true; controls.autoRotate = false; root.classList.add('started'); applyScreen(0, 0); hint(cam.aspect < 0.8 ? 'Turn your phone sideways for the best view · swipe to move on' : 'Use the arrows or swipe to walk through the rooms'); }
   function setMode(m) { state.userMode = m; syncLighting(); markUI(); }
-  function toggleLabels(on) { state.labels = on == null ? !state.labels : on; labelsEl.innerHTML = ''; markUI(); needRender = true; animate(); }
+  function toggleLabels(on) { state.labels = on == null ? !state.labels : on; labelsEl.innerHTML = ''; labelsEl.dataset.key = ''; markUI(); needRender = true; animate(); }
   function togglePlan(on) { state.plan = on == null ? !state.plan : on; root.classList.toggle('split', state.plan); if (state.plan && !planSvg) buildPlan(); markUI(); setTimeout(onResize, 30); }
   function hint(t) { const h = root.querySelector('.fam-hint'); if (!h) return; h.textContent = t; h.classList.add('show'); clearTimeout(hint.tm); hint.tm = setTimeout(() => h.classList.remove('show'), 4500); }
 
@@ -162,6 +162,7 @@ window.APTFAM = (function () {
     const kids = labelsEl.children;
     for (let i = 0; i < items.length; i++) { const it = items[i]; _v.set(it.x, it.y, it.z).project(cam); const el = kids[i];
       const dist = cam.position.distanceTo(new THREE.Vector3(it.x, it.y, it.z));
+      if (!el) continue;
       if (_v.z > 1 || Math.abs(_v.x) > 0.98 || Math.abs(_v.y) > 0.98 || dist < 0.9 || dist > 11 || (dist > 7.5 && !SCREENS[state.screen].overview)) { el.style.display = 'none'; continue; }
       el.style.display = ''; el.style.transform = 'translate(' + ((_v.x + 1) / 2 * W).toFixed(1) + 'px,' + ((1 - _v.y) / 2 * Hh).toFixed(1) + 'px) translate(-50%, -100%)'; el.style.opacity = dist > 6 ? 0.7 : 1; }
   }
