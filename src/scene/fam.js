@@ -5,24 +5,24 @@ window.APTFAM = (function () {
   const V3 = (a) => new THREE.Vector3(a[0], a[1], a[2]);
   const shotById = id => A.shots.find(s => s.id === id);
   const SCREENS = [
-    { id: 'overview', n: '01', title: 'Apartment Overview', sub: 'Three bedrooms · salon and dining', desc: 'The whole apartment seen from above with every piece of furniture in its place. Ceilings are 2.65 m throughout; the existing floors are kept.', cams: ['fam-overview', 'fam-overview-2'], rooms: [], others: 'full', ic: '🏠', short: 'Overview', overview: true },
-    { id: 'master', n: '02', title: 'Master Bedroom', sub: 'Bed + Wardrobe + Dressing Wall', desc: 'A 160 × 190 bed with its scalloped headboard, a nightstand and pendant on each side, and the full-height dressing wall with mirror doors directly opposite. Hanging wardrobe beside the window. No television.', cams: ['fam-master', 'fam-master-2', 'fam-master-3'], rooms: ['master'], others: true, ic: '🛏', short: 'Master' },
-    { id: 'kids', n: '03', title: "Children's Bedroom", sub: 'Two Beds + Desk + Wardrobe', desc: 'Two beds on the headboard wall with a shared nightstand, a desk under the window, the arched-door wardrobe beside it and a soft rug between.', cams: ['fam-kids', 'fam-kids-2'], rooms: ['kids'], others: true, ic: '🧸', short: 'Children' },
-    { id: 'living', n: '04', title: 'Living Room', sub: 'L-Sofa + TV Wall + Coffee Table', desc: 'The L-sofa along the wall with its chaise at the window, pebble coffee tables, and the fluted TV wall with its floating walnut console.', cams: ['fam-living', 'fam-living-2'], rooms: ['living'], others: true, ic: '🛋', short: 'Living' },
-    { id: 'salon', n: '05', title: 'Salon', sub: 'Sofa + Armchairs + Feature Panel', desc: 'The champagne sofa and two armchairs around the marble centre table, facing the fluted feature panel with its sconces, next to the balcony door.', cams: ['fam-salon', 'fam-salon-2'], rooms: ['salon'], others: true, ic: '🛋', short: 'Salon' },
-    { id: 'dining', n: '06', title: 'Dining', sub: 'Table for Six + Buffet + Mirrors', desc: 'The pedestal table with six boucle chairs, the buffet in the bay with three pebble mirrors above it, and the entry mirror and shelf by the door.', cams: ['fam-dining', 'fam-dining-2'], rooms: ['salon'], others: true, ic: '🍽', short: 'Dining' },
-    { id: 'night', n: '07', title: 'Evening Apartment', sub: 'The apartment at night', desc: 'Warm 2700 K light only: ceiling coves, downlights, pendants and bedside lamps. Every room glows from its own lighting.', cams: ['fam-overview', 'fam-night-2'], rooms: [], others: 'full', ic: '🌙', short: 'Evening', overview: true, forceMode: 'evening' },
+    { id: 'overview', n: '01', title: 'Apartment Overview', ar: 'نظرة عامة على الشقة', arShort: 'الشقة', sub: 'Three bedrooms · salon and dining', desc: 'The whole apartment seen from above with every piece of furniture in its place. Ceilings are 2.65 m throughout; the existing floors are kept.', cams: ['fam-overview', 'fam-overview-2'], rooms: [], others: 'full', ic: '🏠', short: 'Overview', overview: true },
+    { id: 'master', n: '02', title: 'Master Bedroom', ar: 'غرفة النوم الرئيسية', arShort: 'غرفة النوم', sub: 'Bed + Wardrobe + Dressing Wall', desc: 'A 160 × 190 bed with its scalloped headboard, a nightstand and pendant on each side, and the full-height dressing wall with mirror doors directly opposite. Hanging wardrobe beside the window. No television.', cams: ['fam-master', 'fam-master-2', 'fam-master-3'], rooms: ['master'], others: true, ic: '🛏', short: 'Master' },
+    { id: 'kids', n: '03', title: "Children's Bedroom", ar: 'غرفة الأطفال', arShort: 'غرفة الأطفال', sub: 'Two Beds + Desk + Wardrobe', desc: 'Two beds on the headboard wall with a shared nightstand, a desk under the window, the arched-door wardrobe beside it and a soft rug between.', cams: ['fam-kids', 'fam-kids-2'], rooms: ['kids'], others: true, ic: '🧸', short: 'Children' },
+    { id: 'living', n: '04', title: 'Living Room', ar: 'غرفة المعيشة', arShort: 'المعيشة', sub: 'L-Sofa + TV Wall + Coffee Table', desc: 'The L-sofa along the wall with its chaise at the window, pebble coffee tables, and the fluted TV wall with its floating walnut console.', cams: ['fam-living', 'fam-living-2'], rooms: ['living'], others: true, ic: '🛋', short: 'Living' },
+    { id: 'salon', n: '05', title: 'Salon', ar: 'الصالون', arShort: 'الصالون', sub: 'Sofa + Armchairs + Feature Panel', desc: 'The champagne sofa and two armchairs around the marble centre table, facing the fluted feature panel with its sconces, next to the balcony door.', cams: ['fam-salon', 'fam-salon-2'], rooms: ['salon'], others: true, ic: '🛋', short: 'Salon' },
+    { id: 'dining', n: '06', title: 'Dining', ar: 'السفرة', arShort: 'السفرة', sub: 'Table for Six + Buffet + Mirrors', desc: 'The pedestal table with six boucle chairs, the buffet in the bay with three pebble mirrors above it, and the entry mirror and shelf by the door.', cams: ['fam-dining', 'fam-dining-2'], rooms: ['salon'], others: true, ic: '🍽', short: 'Dining' },
+    { id: 'night', n: '07', title: 'Evening Apartment', ar: 'الشقة في المساء', arShort: 'المساء', sub: 'The apartment at night', desc: 'Warm 2700 K light only: ceiling coves, downlights, pendants and bedside lamps. Every room glows from its own lighting.', cams: ['fam-overview', 'fam-night-2'], rooms: [], others: 'full', ic: '🌙', short: 'Evening', overview: true, forceMode: 'evening' },
   ];
   const PRESETS = [
-    { name: 'Apartment Overview', screen: 0, cam: 'fam-overview' },
-    { name: 'Entrance', screen: 5, cam: 'fam-dining-2', title: 'Entrance', sub: 'Front door, dining and the corridor', desc: 'Standing inside the front door: the dining table and buffet ahead, the entry mirror and shelf beside you, the corridor to the bedrooms on the right.' },
-    { name: 'Master Bedroom', screen: 1, cam: 'fam-master' },
-    { name: 'Master — Bed to Wardrobe', screen: 1, cam: 'fam-master-2' },
-    { name: 'Master — Wardrobe to Bed', screen: 1, cam: 'fam-master-3' },
-    { name: "Children's Bedroom", screen: 2, cam: 'fam-kids' },
-    { name: 'Living Room', screen: 3, cam: 'fam-living' },
-    { name: 'Salon', screen: 4, cam: 'fam-salon' },
-    { name: 'Dining', screen: 5, cam: 'fam-dining' },
+    { name: 'Apartment Overview', ar: 'نظرة عامة على الشقة', screen: 0, cam: 'fam-overview' },
+    { name: 'Entrance', ar: 'المدخل', screen: 5, cam: 'fam-dining-2', title: 'Entrance', arTitle: 'المدخل', sub: 'Front door, dining and the corridor', desc: 'Standing inside the front door: the dining table and buffet ahead, the entry mirror and shelf beside you, the corridor to the bedrooms on the right.' },
+    { name: 'Master Bedroom', ar: 'غرفة النوم الرئيسية', screen: 1, cam: 'fam-master' },
+    { name: 'Master — Bed to Wardrobe', ar: 'غرفة النوم — من السرير إلى الدولاب', screen: 1, cam: 'fam-master-2' },
+    { name: 'Master — Wardrobe to Bed', ar: 'غرفة النوم — من الدولاب إلى السرير', screen: 1, cam: 'fam-master-3' },
+    { name: "Children's Bedroom", ar: 'غرفة الأطفال', screen: 2, cam: 'fam-kids' },
+    { name: 'Living Room', ar: 'غرفة المعيشة', screen: 3, cam: 'fam-living' },
+    { name: 'Salon', ar: 'الصالون', screen: 4, cam: 'fam-salon' },
+    { name: 'Dining', ar: 'السفرة', screen: 5, cam: 'fam-dining' },
   ];
   const LABELS = { 'm-bed': 'Bed 160 × 190', 'm-ns1': 'Nightstand', 'm-ns2': 'Nightstand', 'm-dresswall': 'Wardrobe · dressing wall', 'm-wardE': 'Hanging wardrobe', 'm-mirror': 'Mirror', 'm-rug': 'Rug', 'm-curtain': 'Curtains', 'm-art': 'Artwork', 'm-headboard': 'Headboard',
     'k-bed1': 'Bed', 'k-bed2': 'Bed', 'k-ns': 'Nightstand', 'k-desk': 'Desk', 'k-wardrobe': 'Wardrobe', 'k-shelf': 'Shelves', 'k-rug': 'Rug', 'k-panel': 'Headboard wall',
@@ -30,7 +30,10 @@ window.APTFAM = (function () {
     'd-table': 'Dining table', 'd-buffet': 'Buffet', 'd-mirrors': 'Mirrors', 'd-vitrine': 'Display cabinet', 's-emirror': 'Entry mirror', 'd-shelf': 'Entry shelf', 'd-ch-n1': 'Dining chairs',
     's-sofa': 'Sofa', 's-arm1': 'Armchair', 's-arm2': 'Armchair', 's-ct': 'Centre table', 's-panel': 'Feature panel', 's-rug': 'Rug', 's-curtain': 'Curtains' };
   const ANCHOR_Y = { 'm-mirror': 1.3, 'm-dresswall': 2.05, 'm-wardE': 2.2, 'm-curtain': 2.15, 'm-art': 2.0, 'm-headboard': 1.45, 'k-panel': 1.5, 'k-wardrobe': 2.15, 'k-curtain': 2.15, 'k-shelf': 2.35, 'l-panel': 2.3, 'l-tv': 1.15, 'l-curtain': 2.15, 's-panel': 2.3, 's-curtain': 2.15, 'd-mirrors': 1.55, 's-emirror': 1.65, 'd-vitrine': 2.1 };
-  const ROOM_LABELS = [['Master bedroom', 5.76, 1.6], ["Children's bedroom", 6.69, 4.9], ['Living room', 6.71, 8.05], ['Salon', 5.8, 11.4], ['Dining', 2.2, 11.4], ['Kitchen', 1.76, 7.55], ['Bathroom', 2.36, 4.8], ['Corridor', 3.85, 7.0], ['Balcony', 7.9, 11.4], ['Entrance', 1.0, 12.6]];
+  const ROOM_AR = { 'Master bedroom': 'غرفة النوم الرئيسية', "Children's bedroom": 'غرفة الأطفال', 'Living room (TV)': 'غرفة المعيشة', 'Living room': 'غرفة المعيشة', 'Salon': 'الصالون', 'Salon + dining': 'الصالون والسفرة', 'Dining': 'السفرة', 'Kitchen': 'المطبخ', 'Bathroom': 'الحمام', 'Corridor': 'الطرقة', 'Balcony': 'البلكونة', 'Kitchen balcony': 'بلكونة المطبخ', 'Entrance': 'المدخل' };
+  const ROOM_LABELS = [['Master bedroom', 5.76, 1.6], ["Children's bedroom", 6.69, 4.9], ['Living room', 6.71, 8.05], ['Salon', 5.8, 11.4], ['Dining', 2.2, 11.4], ['Kitchen', 1.76, 7.55], ['Bathroom', 2.36, 4.8], ['Corridor', 3.85, 7.0], ['Balcony', 7.9, 11.4], ['Entrance', 1.0, 12.6]].map(([t, x, z]) => [t + ' · ' + ROOM_AR[t], x, z]);
+  const SHARE_URL = () => location.origin + location.pathname;
+  const shareWhatsApp = () => { const text = 'شقتنا بتصميم ثلاثي الأبعاد 🏠 Our apartment in 3D — walk through every room, by day and by night:\n' + SHARE_URL(); window.open('https://wa.me/?text=' + encodeURIComponent(text), '_blank', 'noopener'); };
   const ZONES = { master: null, kids: null, living: null, salon: [[4.34, 9.78], [7.31, 9.78], [7.31, 13.02], [4.34, 13.02]], dining: [[0.25, 8.88], [3.36, 8.88], [3.36, 9.78], [4.34, 9.78], [4.34, 13.02], [0.25, 13.02]] };
 
   const state = { started: false, screen: 0, view: 0, userMode: 'day', mix: 0, mixTarget: 0, labels: false, plan: false, explore: false, fast: false, eye: false, views: false, override: null };
@@ -113,7 +116,7 @@ window.APTFAM = (function () {
     limitsFor(sc); flyTo(sc.cams[state.view], 1900, instant); syncLighting(instant);
     renderCard(override ? Object.assign({}, sc, override) : sc); markUI(); updatePlanHL();
   }
-  function goPreset(i) { const p = PRESETS[i]; if (!p) return; if (state.explore) leaveExplore(); if (!state.started) start(); const v = Math.max(0, SCREENS[p.screen].cams.indexOf(p.cam)); applyScreen(p.screen, v, false, p.title ? { title: p.title, sub: p.sub, desc: p.desc } : null); }
+  function goPreset(i) { const p = PRESETS[i]; if (!p) return; if (state.explore) leaveExplore(); if (!state.started) start(); const v = Math.max(0, SCREENS[p.screen].cams.indexOf(p.cam)); applyScreen(p.screen, v, false, p.title ? { title: p.title, arTitle: p.arTitle, sub: p.sub, desc: p.desc } : null); }
   function toggleViews(on) { state.views = on == null ? !state.views : on; root.classList.toggle('views', state.views); markUI(); }
   function goScreen(i) { if (state.explore) leaveExplore(); if (!state.started) start(); applyScreen(i, 0); }
   function next() { goScreen(state.screen + 1); } function prev() { goScreen(state.screen - 1); }
@@ -174,6 +177,7 @@ window.APTFAM = (function () {
     // clickable rooms
     const zones = [['master', A.rooms.find(r => r.id === 'master').poly], ['kids', A.rooms.find(r => r.id === 'kids').poly], ['living', A.rooms.find(r => r.id === 'living').poly], ['salon', ZONES.salon], ['dining', ZONES.dining]];
     for (const [id, poly] of zones) { const p = document.createElementNS(NS, 'polygon'); p.setAttribute('points', poly.map(q => px(q[0]) + ',' + px(q[1])).join(' ')); p.setAttribute('class', 'fam-zone'); p.addEventListener('click', () => goScreen(SCREENS.findIndex(s => s.id === id))); g.appendChild(p); }
+    for (const t of planSvg.querySelectorAll('text.pl-room')) { const ar = ROOM_AR[t.textContent]; if (!ar) continue; const ts = document.createElementNS(NS, 'tspan'); ts.setAttribute('x', t.getAttribute('x')); ts.setAttribute('dy', '13'); ts.setAttribute('class', 'pl-room-ar'); ts.setAttribute('lang', 'ar'); ts.textContent = ar; t.appendChild(ts); }
     planCam = document.createElementNS(NS, 'g'); planCam.setAttribute('class', 'fam-cam'); planCam.innerHTML = '<path class="cone" d=""/><circle r="7" cx="0" cy="0"/>'; g.appendChild(planCam);
     updatePlanHL(); drawPlanCam();
   }
@@ -194,14 +198,16 @@ window.APTFAM = (function () {
     ui.labels = btn('fam-btn', '🏷 <span class="t">Labels</span>', () => toggleLabels(), 'Show furniture labels'); tools.appendChild(ui.labels);
     ui.full = btn('fam-btn', '⛶ <span class="t">Full screen</span>', toggleFull, 'Full screen'); tools.appendChild(ui.full);
     ui.explore = btn('fam-btn fam-more', '✦ <span class="t">Explore</span>', () => state.explore ? leaveExplore() : enterExplore(), 'Free camera and all views'); tools.appendChild(ui.explore);
+    ui.share = btn('fam-btn fam-wa', '<svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8zm-3 4.4c-.2 0-.5 0-.7.3-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.2 2.4.9 2.9.8 3.4.7.5 0 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3l-2-.9c-.3-.1-.5-.2-.7.1l-.9 1.1c-.2.2-.3.2-.6.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.6-1.1.1-.2 0-.4 0-.5l-.9-2.1c-.2-.6-.5-.5-.7-.5h-.6z"/></svg> <span class="t">WhatsApp</span>', shareWhatsApp, 'Share this link on WhatsApp · مشاركة عبر واتساب'); tools.appendChild(ui.share);
+    const titleShare = root.querySelector('.fam-share'); if (titleShare) titleShare.addEventListener('click', shareWhatsApp);
     // bottom bar
     ui.prev = btn('fam-arrow prev', '‹', prev, 'Previous'); ui.next = btn('fam-arrow next', '›', next, 'Next'); root.appendChild(ui.prev); root.appendChild(ui.next);
     const rooms = document.createElement('div'); rooms.className = 'fam-rooms'; bottom.appendChild(rooms); ui.rooms = [];
-    SCREENS.forEach((sc, i) => { if (sc.id === 'night') return; const b = btn('fam-room', '<span class="ic">' + sc.ic + '</span><span>' + sc.short + '</span>', () => goScreen(i)); b.dataset.i = i; rooms.appendChild(b); ui.rooms[i] = b; });
+    SCREENS.forEach((sc, i) => { if (sc.id === 'night') return; const b = btn('fam-room', '<span class="ic">' + sc.ic + '</span><span>' + sc.short + '</span><span class="ar" lang="ar" dir="rtl">' + sc.arShort + '</span>', () => goScreen(i)); b.dataset.i = i; rooms.appendChild(b); ui.rooms[i] = b; });
     ui.angle = btn('fam-btn fam-angle', '↻ <span class="t">Another angle</span>', nextView, 'Switch to another view of this room'); root.appendChild(ui.angle);
     ui.progress = document.createElement('div'); ui.progress.className = 'fam-progress'; bottom.appendChild(ui.progress);
     // camera views panel
-    const vp = document.createElement('div'); vp.className = 'fam-views'; const vl = document.createElement('div'); vl.className = 'fam-exl'; vl.textContent = 'Camera views'; vp.appendChild(vl); ui.presets = PRESETS.map((p, i) => { const b = btn('fam-btn sm', p.name + ' <span class="k">' + (i + 1) + '</span>', () => goPreset(i)); vp.appendChild(b); return b; }); root.appendChild(vp);
+    const vp = document.createElement('div'); vp.className = 'fam-views'; const vl = document.createElement('div'); vl.className = 'fam-exl'; vl.textContent = 'Camera views'; vp.appendChild(vl); ui.presets = PRESETS.map((p, i) => { const b = btn('fam-btn sm', p.name + ' <span class="ar" lang="ar" dir="rtl">' + p.ar + '</span><span class="k">' + (i + 1) + '</span>', () => goPreset(i)); vp.appendChild(b); return b; }); root.appendChild(vp);
     // title screen
     root.querySelector('.fam-start').addEventListener('click', start);
     // explore panel
@@ -214,7 +220,7 @@ window.APTFAM = (function () {
     grp('Performance', [{ name: 'Mirrors on', on: () => { state.fast = false; R.setReflections(true); needRender = true; animate(); } }, { name: 'Fast (no mirrors)', on: () => { state.fast = true; R.setReflections(false); needRender = true; animate(); } }]);
     markUI();
   }
-  function renderCard(sc) { const c = root.querySelector('.fam-card'); c.classList.remove('in'); void c.offsetWidth; c.querySelector('.n').textContent = sc.n + ' / 07'; c.querySelector('h2').textContent = sc.title.toUpperCase(); c.querySelector('.sub').textContent = sc.sub; c.querySelector('.desc').textContent = sc.desc; c.classList.add('in'); }
+  function renderCard(sc) { const c = root.querySelector('.fam-card'); c.classList.remove('in'); void c.offsetWidth; c.querySelector('.n').textContent = sc.n + ' / 07'; c.querySelector('h2').textContent = sc.title.toUpperCase(); const arEl = c.querySelector('.ar'); if (arEl) arEl.textContent = sc.arTitle || sc.ar || ''; c.querySelector('.sub').textContent = sc.sub; c.querySelector('.desc').textContent = sc.desc; c.classList.add('in'); }
   function markUI() {
     const sc = SCREENS[state.screen]; const mode = effectiveMode();
     ui.day.classList.toggle('on', mode === 'day'); ui.eve.classList.toggle('on', mode === 'evening');
@@ -242,5 +248,5 @@ window.APTFAM = (function () {
     el.addEventListener('pointermove', e => { if (p0 && e.pointerType === 'touch' && e.isPrimary === false) p0.n = 2; });
     el.addEventListener('pointerup', e => { if (!p0 || e.pointerType !== 'touch') return; const dx = e.clientX - p0.x, dy = e.clientY - p0.y, dt = performance.now() - p0.t; const one = p0.n === 1; p0 = null; if (one && state.started && !state.explore && dt < 320 && Math.abs(dx) > 70 && Math.abs(dy) < 60) { if (dx < 0) next(); else prev(); } });
   }
-  return { init, start, goScreen, goPreset, next, prev, nextView, setMode, toggleLabels, togglePlan, toggleViews, toggleFull, enterExplore, leaveExplore, SCREENS, PRESETS };
+  return { init, start, goScreen, goPreset, next, prev, nextView, setMode, toggleLabels, togglePlan, toggleViews, toggleFull, enterExplore, leaveExplore, shareWhatsApp, SCREENS, PRESETS };
 })();

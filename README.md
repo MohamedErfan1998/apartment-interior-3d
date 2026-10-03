@@ -10,6 +10,7 @@ An interactive 3D presentation of a three-bedroom apartment's interior design, m
 - Seven guided screens: Apartment Overview, Master Bedroom, Children's Bedroom, Living Room, Salon, Dining, Evening Apartment.
 - Camera views: Apartment Overview, Entrance, Master Bedroom, Master — Bed to Wardrobe, Master — Wardrobe to Bed, Children's Bedroom, Living Room, Salon, Dining — with smooth transitions at about 1.50 m eye height.
 - ☀️ Day / 🌙 Evening lighting cross-fade, optional floor plan beside the 3D view, optional furniture labels, full screen, touch (tap, swipe, pinch zoom), keyboard (arrows, 1–9 for views, F for full screen).
+- Room names in English and Arabic (buttons, room cards, camera views, overview labels and the floor plan), and a WhatsApp share button on the title screen and in the toolbar that opens a ready-made message with the site link.
 
 Honest label: this is a real-time 3D concept visualization, not a photo-real render.
 

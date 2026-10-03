@@ -4,7 +4,7 @@
   --f-cream: #e9e2d4; --f-wood: #b58b66; --f-kitchen: #dedbd3; --f-bath: #d8d6cf; --f-balcony: #d3cec3;
   --wall: #2b302d; --wall-l: #8f958f; --win: #cfe0ea; --swing: rgba(164,131,47,.14); --line: #2b302d; --rug: rgba(196,176,140,.35);
   --c-band: rgba(164,131,47,.16); --c-band-l: #a4832f; --c-led: #d49a2a; --lt: #fff3cf; --dim: #7d6a3a; --circ: #2f6f9e;
-  --display: 'Spectral', Georgia, 'Times New Roman', serif; --body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+  --display: 'Spectral', Georgia, 'Times New Roman', serif; --body: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif; --arabic: 'IBM Plex Sans Arabic', 'Segoe UI', 'Noto Naskh Arabic', Tahoma, sans-serif;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -101,3 +101,17 @@ button { font-family: inherit; }
 .fam-status.error { opacity: 1; background: rgba(16,21,26,.85); padding: 14px 18px; border-radius: 12px; max-width: 80vw; text-align: center; z-index: 6; display: block !important; }
 .fam-noscript { position: absolute; inset: 0; display: grid; place-items: center; z-index: 9; background: #10151a; padding: 24px; text-align: center; }
 @media (max-width: 720px) { .fam-views { right: 8px; left: 8px; width: auto; top: 58px; } }
+
+/* Arabic names and the WhatsApp share */
+[lang="ar"], .ar { font-family: var(--arabic); }
+.fam-room .ar { font: 500 11.5px/1.2 var(--arabic); opacity: .9; }
+.fam-card .ar { font: 600 clamp(16px, 2.3vw, 24px)/1.25 var(--arabic); margin: 0 0 6px; opacity: .95; }
+.fam-views .fam-btn .ar { opacity: .85; margin-left: 8px; font-size: 12px; }
+.fam-title-ar { font: 500 clamp(16px, 2.2vw, 22px)/1.4 var(--arabic); color: #fff; opacity: .92; margin: -4px 0 18px; }
+.fam-share { margin-top: 14px; display: inline-flex; align-items: center; gap: 8px; font: 600 13.5px var(--body); color: #fff; background: rgba(37,211,102,.18); border: 1px solid rgba(37,211,102,.6); border-radius: 999px; padding: 11px 18px; cursor: pointer; backdrop-filter: blur(6px); }
+.fam-share:hover { background: rgba(37,211,102,.32); }
+.fam-share span[lang="ar"] { font: 500 13.5px var(--arabic); }
+.fam-btn.fam-wa { display: inline-flex; align-items: center; gap: 6px; border-color: rgba(37,211,102,.6); }
+.fam-btn.fam-wa:hover { background: rgba(37,211,102,.28); }
+.pl-room-ar { font-size: 11px; font-weight: 500; font-family: var(--arabic); fill: #3b413d; }
+@media (max-width: 720px) { .fam-room .ar { font-size: 10.5px; } .fam-card .ar { font-size: 15px; } .fam-title-ar { font-size: 15px; } .fam-share { font-size: 12.5px; padding: 10px 14px; } }
