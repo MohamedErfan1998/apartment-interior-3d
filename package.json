@@ -1,0 +1,24 @@
+{
+  "name": "apartment-interior-3d",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Our apartment — interactive 3D interior design presentation (Three.js, Vite, TypeScript), deployed on GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc --noEmit",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --port 4173 --strictPort"
+  },
+  "dependencies": {
+    "three": "0.128.0"
+  },
+  "devDependencies": {
+    "@types/three": "0.128.0",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.21"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

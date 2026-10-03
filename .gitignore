@@ -1,0 +1,22 @@
+# dependencies and build output
+node_modules/
+dist/
+dist-ssr/
+
+# local environment and secrets — never committed
+.env
+.env.*
+*.local
+
+# editor and OS files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
